@@ -11,4 +11,11 @@ public class BoardController {
     public String saveForm() {
         return "save";
     }
+
+    @PostMapping("/save")
+    public String save(@ModelAttribute BoardDTO boardDTO) throws IOException {
+        System.out.println("boardDTO = " + boardDTO);
+        boardService.save(boardDTO);
+        return "index";
+    }
 }
