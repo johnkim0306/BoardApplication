@@ -1,6 +1,10 @@
 package board.boardspring.dto;
+
+import board.boardspring.entity.BoardEntity;
+
 import lombok.*;
 
+import java.time.LocalDateTime;
 
 @Getter
 @Setter
