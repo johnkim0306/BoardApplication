@@ -1,4 +1,5 @@
 package board.boardspring.entity;
+import board.boardspring.dto.BoardDTO;
 import lombok.Getter;
 import lombok.Setter;
 import javax.persistence.*;
@@ -24,6 +25,9 @@ public class BoardEntity extends BaseEntity{
     @Column(length = 500)
     private String boardContents;
 
+    @Column
+    private String boardHits;
+
     public static BoardEntity toSaveEntity(BoardDTO boardDTO) {
         BoardEntity boardEntity = new BoardEntity();
         boardEntity.setBoardWriter(boardDTO.getBoardWriter());
@@ -31,7 +35,6 @@ public class BoardEntity extends BaseEntity{
         boardEntity.setBoardTitle(boardDTO.getBoardTitle());
         boardEntity.setBoardContents(boardDTO.getBoardContents());
         boardEntity.setBoardHits(0);
-        boardEntity.setFileAttached(0); // 파일 없음.
         return boardEntity;
     }
 }
