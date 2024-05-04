@@ -17,4 +17,8 @@ public class BoardService {
         BoardEntity boardEntity = BoardEntity.toSaveEntity(boardDTO);
         boardRepository.save(boardEntity);
     }
+
+    public List<BoardDTO> findAll() {
+        List<BoardEntity> boardEntityList = boardRepository.findAll();
+    }
 }

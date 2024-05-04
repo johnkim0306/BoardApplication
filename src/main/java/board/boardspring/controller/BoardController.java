@@ -28,4 +28,11 @@ public class BoardController {
         boardService.save(boardDTO);
         return "index";
     }
+
+    @GetMapping("/")
+    public String findAll(Model model) {
+        // Find the boarder from the database
+        List<BoardDTO> boardDTOList = boardService.findAll();
+        return "save";
+    }
 }
