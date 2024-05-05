@@ -3,6 +3,7 @@ package board.boardspring.controller;
 import board.boardspring.dto.BoardDTO;
 import board.boardspring.service.BoardService;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import lombok.RequiredArgsConstructor;
 
 import java.io.IOException;
+import java.util.List;
 
 @Controller
 @RequiredArgsConstructor
@@ -29,10 +31,12 @@ public class BoardController {
         return "index";
     }
 
+
     @GetMapping("/")
     public String findAll(Model model) {
         // Find the boarder from the database
         List<BoardDTO> boardDTOList = boardService.findAll();
-        return "save";
+        model.addAttribute("boardList", boardDTOList);
+        return "list";
     }
 }
