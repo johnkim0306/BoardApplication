@@ -4,10 +4,7 @@ import board.boardspring.dto.BoardDTO;
 import board.boardspring.service.BoardService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import lombok.RequiredArgsConstructor;
 
 import java.io.IOException;
@@ -38,5 +35,17 @@ public class BoardController {
         List<BoardDTO> boardDTOList = boardService.findAll();
         model.addAttribute("boardList", boardDTOList);
         return "list";
+    }
+
+    @GetMapping("/{id}")
+    public String findById(@PathVariable Long id, Model model) {
+
+        // update views
+        boardService.updateHits(id);
+        // get the boarder in dto
+        BoardDTO boardDTO = boardService.findById(id);
+        // and put that in a model
+        model.addAttribute("board", boardDTO);
+        return "detail";
     }
 }
